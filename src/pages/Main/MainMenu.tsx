@@ -28,7 +28,7 @@ function MainMenu() {
     <nav className="w-48">
       <ul className="flex flex-col items-center gap-4">
         {menus.map(({ name, to }) => (
-          <li>
+          <li key={name}>
             <button className="btn btn-ghost font-playfair-display text-2xl">
               <Link to={to}>{name}</Link>
             </button>
