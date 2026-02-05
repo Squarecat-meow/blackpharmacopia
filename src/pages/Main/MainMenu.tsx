@@ -29,9 +29,11 @@ function MainMenu() {
       <ul className="flex flex-col items-center gap-4">
         {menus.map(({ name, to }) => (
           <li key={name}>
-            <button className="btn btn-ghost font-playfair-display text-2xl">
-              <Link to={to}>{name}</Link>
-            </button>
+            <Link to={to}>
+              <button className="btn btn-ghost font-playfair-display text-2xl">
+                {name}
+              </button>
+            </Link>
           </li>
         ))}
       </ul>

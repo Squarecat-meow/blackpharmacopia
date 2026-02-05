@@ -13,9 +13,9 @@ function MainLayout() {
         </button>
         <Title />
       </header>
-      <section className="flex gap-4 grow">
+      <section className="flex gap-4 grow min-h-0">
         <MainMenu />
-        <div className="bg-background/60 w-1/2 backdrop-blur-lg rounded-2xl p-4">
+        <div className="bg-background/60 w-1/2 backdrop-blur-lg rounded-2xl p-4 overflow-y-auto">
           <Outlet />
         </div>
       </section>

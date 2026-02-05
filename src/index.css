@@ -1,9 +1,10 @@
 @import 'tailwindcss';
 @plugin 'daisyui';
+@import 'react-notion-x/src/styles.css';
 
 @theme {
   --font-hepta-slab: 'Hepta Slab', serif;
-  --font-ibm-plex-sans: 'IBM Plex Sans KR', sans-serif;
+  --font-sans: 'IBM Plex Sans KR', sans-serif;
   --font-playfair-display: 'Playfair Display', serif;
   --font-alumni-sans: 'Alumni Sans', sans-serif;
   --font-beau-rivage: 'Beau Rivage', cursive;
