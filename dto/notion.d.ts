@@ -26,7 +26,7 @@ export interface IPostList {
   createdAt: Date;
   author: {
     name: string;
-    avatarUrl: string;
+    avatar_url: string;
   }[];
 }
 

@@ -31,7 +31,7 @@ export default async function handler(req, res) {
           : '카테고리 없음',
         author: el.properties.작성자.people
           ? el.properties.작성자.people.map((el) => {
-              return { name: el.name, avatarUrl: el.avatar_url };
+              return { name: el.name, avatar_url: el.avatar_url };
             })
           : '작성자 없음',
         createdAt: el.created_time,
