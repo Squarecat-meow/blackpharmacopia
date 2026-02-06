@@ -7,16 +7,20 @@ function PostListItem({ element }: { element: IPostList }) {
   return (
     <li className="flex flex-col p-2 gap-2 not-last:border-b not-last:border-b-background grow">
       <h1 className="text-3xl font-noto-serif font-bold">{element.title}</h1>
-      <div>
-        {element.author.map((el) => (
-          <>
+      <div className="flex items-center">
+        <div className="avatar-group -space-x-4">
+          {element.author.map((el) => (
             <div className="avatar">
               <div className="w-6 rounded-full">
                 <img src={el.avatarUrl} alt={`${el.name}의 아바타`} />
               </div>
             </div>
-            <span className="text-sm text-slate-600 ml-2">{el.name}</span>
-          </>
+          ))}
+        </div>
+        {element.author.map((el) => (
+          <span key={el.name} className="text-sm text-slate-600 ml-2">
+            {el.name}
+          </span>
         ))}
       </div>
       <div className="flex items-center gap-2">
