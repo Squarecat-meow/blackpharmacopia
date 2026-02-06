@@ -13,12 +13,8 @@ function Board() {
     retry: 5,
   });
 
-  if (!data || isError)
-    return (
-      <main className="flex h-full justify-center">
-        <h1 className="text-xl">{error?.message}</h1>
-      </main>
-    );
+  if (isLoading) return <Loader2Icon className="text-center animate-spin" />;
+  if (!data || isError) return <h1 className="text-xl">{error?.message}</h1>;
 
   const groupedPost = data.reduce(
     (acc, post) => {
@@ -39,28 +35,24 @@ function Board() {
 
   return (
     <main className="flex flex-col gap-2 h-full">
-      {!isLoading && data ? (
-        <>
-          <nav>
-            {categories.map((el) => (
-              <button
-                key={el}
-                onClick={() => setSelectedCategory(el)}
-                className="btn btn-ghost"
-              >
-                {el}
-              </button>
-            ))}
-          </nav>
-          <ul className="w-full bg-white rounded-xl">
-            {displayedPost.map((el) => (
-              <PostListItem element={el} key={el.id} />
-            ))}
-          </ul>
-        </>
-      ) : (
-        <Loader2Icon className="animate-spin" />
-      )}
+      <>
+        <nav>
+          {categories.map((el) => (
+            <button
+              key={el}
+              onClick={() => setSelectedCategory(el)}
+              className="btn btn-ghost"
+            >
+              {el}
+            </button>
+          ))}
+        </nav>
+        <ul className="w-full bg-white rounded-xl">
+          {displayedPost.map((el) => (
+            <PostListItem element={el} key={el.id} />
+          ))}
+        </ul>
+      </>
     </main>
   );
 }

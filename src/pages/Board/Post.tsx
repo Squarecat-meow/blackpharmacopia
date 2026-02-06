@@ -20,6 +20,7 @@ function Post() {
         .json(),
   });
 
+  if (isLoading) return <Loader2Icon className="animate-spin" />;
   if (!data || isError) {
     return <h1>{error?.message}</h1>;
   }
@@ -28,33 +29,26 @@ function Post() {
 
   return (
     <>
-      {!isLoading && data ? (
-        <div className="flex flex-col items-center p-4 bg-white grow rounded-xl">
-          <h1 className="font-noto-serif text-4xl font-bold">
-            {properties.제목.title[0].plain_text}
-          </h1>
-          <div className="flex items-center gap-2 mb-2">
-            <Authors authors={properties.작성자.people} />
-            <span className="text-slate-400">|</span>
-            <span className="text-xs text-slate-500">
-              {new Date(properties.작성일.created_time).toLocaleString(
-                'ko-KR',
-                {
-                  timeZone: 'Asia/Seoul',
-                },
-              )}
-            </span>
-          </div>
-          <NotionRenderer
-            recordMap={data?.recordMap}
-            className="rounded-xl "
-            disableHeader
-            showTableOfContents
-          />
+      <div className="flex flex-col items-center p-4 bg-white grow rounded-xl">
+        <h1 className="font-noto-serif text-4xl font-bold">
+          {properties.제목.title[0].plain_text}
+        </h1>
+        <div className="flex items-center gap-2 mb-2">
+          <Authors authors={properties.작성자.people} />
+          <span className="text-slate-400">|</span>
+          <span className="text-xs text-slate-500">
+            {new Date(properties.작성일.created_time).toLocaleString('ko-KR', {
+              timeZone: 'Asia/Seoul',
+            })}
+          </span>
         </div>
-      ) : (
-        <Loader2Icon className="animate-spin" />
-      )}
+        <NotionRenderer
+          recordMap={data?.recordMap}
+          className="rounded-xl "
+          disableHeader
+          showTableOfContents
+        />
+      </div>
     </>
   );
 }
