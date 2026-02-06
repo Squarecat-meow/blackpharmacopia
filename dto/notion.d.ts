@@ -1,3 +1,5 @@
+import type { PageObjectResponse } from '@notionhq/client';
+
 export interface INotionResponse {
   results: INotionResult[];
 }
@@ -26,4 +28,26 @@ export interface IPostList {
     name: string;
     avatarUrl: string;
   }[];
+}
+
+export interface IPostMetadata extends PageObjectResponse {
+  properties: {
+    작성일: {
+      created_time: Date;
+    };
+    작성자: {
+      people: {
+        name: string;
+        avatar_url: string;
+      }[];
+    };
+    카테고리: {
+      select: {
+        name: string;
+      };
+    };
+    제목: {
+      title: [{ plain_text: string }];
+    };
+  };
 }
