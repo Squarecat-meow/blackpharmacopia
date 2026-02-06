@@ -6,6 +6,7 @@ import About from './pages/About/About';
 import Board from './pages/Board/Board';
 import Gallery from './pages/Gallery/Gallery';
 import Guestbook from './pages/Guestbook/Guestbook';
+import Post from './pages/Board/Post';
 
 function App() {
   return (
@@ -15,7 +16,10 @@ function App() {
         <Route element={<MainLayout />}>
           <Route index element={<MainScreen />} />
           <Route path="about" element={<About />} />
-          <Route path="board" element={<Board />} />
+          <Route path="board">
+            <Route index element={<Board />} />
+            <Route path=":id" element={<Post />} />
+          </Route>
           <Route path="gallery" element={<Gallery />} />
           <Route path="guestbook" element={<Guestbook />} />
         </Route>
