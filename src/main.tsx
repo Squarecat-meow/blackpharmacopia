@@ -19,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <QueryClientProvider client={client}>
         <App />
+        <div id="portal" className="my-4" />
       </QueryClientProvider>
     </BrowserRouter>
   </StrictMode>,

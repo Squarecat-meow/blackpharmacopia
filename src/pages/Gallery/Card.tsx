@@ -1,0 +1,44 @@
+import type { IGalleryItem } from '../../../dto/notion';
+
+function Card({
+  element,
+  onClick,
+}: {
+  element: IGalleryItem;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      key={element.id}
+      className="hover-3d cursor-pointer"
+      onClick={onClick}
+    >
+      <figure className="w-full aspect-square">
+        {element.cover && (
+          <div className="relative">
+            <h1 className="absolute left-4 bottom-4 font-noto-serif text-2xl">
+              {element.properties.제목.title[0].plain_text}
+            </h1>
+            <img
+              src={element.cover.external.url}
+              alt={element.properties.제목.title[0].plain_text}
+              className="w-full aspect-square absolute object-cover rounded-xl mask-b-from-0% bg-white"
+            />
+            <div className="w-full aspect-square bg-white rounded-xl" />
+          </div>
+        )}
+        <img src={element.cover?.external.url} />
+      </figure>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+  );
+}
+
+export default Card;

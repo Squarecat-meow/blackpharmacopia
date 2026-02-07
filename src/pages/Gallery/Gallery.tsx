@@ -1,8 +1,81 @@
+import { useQuery } from '@tanstack/react-query';
+import ky from 'ky';
+import { Loader2Icon } from 'lucide-react';
+import type { IPostMetadata } from '../../../dto/notion';
+import Card from './Card';
+import { useState } from 'react';
+import type { ExtendedRecordMap } from 'notion-types';
+import { createPortal } from 'react-dom';
+import { NotionRenderer } from 'react-notion-x';
+
+interface IGalleryItem extends IPostMetadata {
+  cover: {
+    type: 'external';
+    external: {
+      url: string;
+    };
+  };
+}
+
 function Gallery() {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const { data, isLoading, isError, error } = useQuery<IGalleryItem[]>({
+    queryKey: ['galleries'],
+    queryFn: () => ky.get('/api/gallery/all').json(),
+  });
+
+  const {
+    data: galleryDetail,
+    isLoading: isGalleryLoading,
+    error: galleryDetailError,
+  } = useQuery<{ metadata: IGalleryItem; recordMap: ExtendedRecordMap }>({
+    queryKey: ['picture', selectedId],
+    queryFn: () => ky.get(`/api/gallery/${selectedId}`).json(),
+    enabled: !!selectedId,
+  });
+
+  if (isLoading) return <Loader2Icon className="animate-spin" />;
+  if (!data || isError)
+    return <h1 className="text-xl font-bold">{error?.message}</h1>;
+
+  const handleClick = (id: string) => {
+    setSelectedId(id);
+    const modal = document.getElementById('picture-modal') as HTMLDialogElement;
+    modal.showModal();
+  };
+
   return (
-    <main>
-      <h1>갤러리</h1>
-    </main>
+    <>
+      <main className="w-full grow grid grid-cols-3 gap-4">
+        {data.map((el) => (
+          <Card element={el} key={el.id} onClick={() => handleClick(el.id)} />
+        ))}
+      </main>
+      {createPortal(
+        <dialog id="picture-modal" className="modal">
+          <div className="modal-box w-1/2 max-w-2/3">
+            {!isGalleryLoading && galleryDetail ? (
+              <>
+                <h3 className="font-bold text-lg">
+                  {galleryDetail.metadata?.properties.제목.title[0].plain_text}
+                </h3>
+                <NotionRenderer recordMap={galleryDetail.recordMap} />
+              </>
+            ) : galleryDetailError ? (
+              <h1 className="text-xl font-bold">
+                {galleryDetailError?.message}
+              </h1>
+            ) : (
+              <Loader2Icon className="animate-spin" />
+            )}
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>,
+        document.getElementById('portal') as HTMLDivElement,
+      )}
+    </>
   );
 }
 

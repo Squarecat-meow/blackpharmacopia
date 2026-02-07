@@ -51,3 +51,12 @@ export interface IPostMetadata extends PageObjectResponse {
     };
   };
 }
+
+interface IGalleryItem extends IPostMetadata {
+  cover: {
+    type: 'external';
+    external: {
+      url: string;
+    };
+  };
+}
