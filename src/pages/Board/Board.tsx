@@ -16,8 +16,6 @@ function Board() {
   if (isLoading) return <Loader2Icon className="text-center animate-spin" />;
   if (!data || isError) return <h1 className="text-xl">{error?.message}</h1>;
 
-  console.log(data);
-
   const groupedPost = data.reduce(
     (acc, post) => {
       const cat = post.properties.카테고리.select.name || '카테고리 없음';
