@@ -19,3 +19,11 @@
 - [x] Notion을 통해 CMS 구현
 - [ ] 유튜브 배경음악 기능 구현
 - [x] 방명록 기능 구현
+
+## 환경변수
+
+VITE_NOTION_SECRET_KEY: 데이터베이스를 연결할 때 쓰는 시크릿 키
+VITE_NOTION_MAIN_DATABASE_URL: 관리페이지 데이터베이스의 데이터 소스 ID
+VITE_NOTION_BOARD_DATABASE_URL: 게시판 페이지 데이터베이스의 데이터 소스 ID
+VITE_NOTION_GALLERY_DATABASE_URL: 갤러리 페이지 데이터베이스의 데이터 소스 ID
+VITE_NOTION_GUESTBOOK_DATABASE_URL: 방명록 데이터베이스의 데이터 소스 ID
