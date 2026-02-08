@@ -36,13 +36,9 @@ function MusicPlayer() {
         />
       </div>
       <div className="flex gap-2 items-center">
-        <button>
-          <SkipBackIcon size={14} />
-        </button>
         <button onClick={() => setPlaying(!playing)}>
-          {playing ? <PauseIcon size={18} /> : <PlayIcon size={18} />}
+          {playing ? <PauseIcon size={24} /> : <PlayIcon size={24} />}
         </button>
-        <SkipForwardIcon size={14} />
       </div>
     </div>
   );
