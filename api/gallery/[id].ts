@@ -1,6 +1,6 @@
 import type { ExtendedRecordMap } from 'notion-types';
 import type { IGalleryItem } from '../../dto/notion';
-import { notion, notionHQ } from '../_lib/notion';
+import { notion, notionHQ } from '../_lib/notion.js';
 
 export default async function handler(req, res) {
   const { id } = req.query;

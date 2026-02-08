@@ -1,5 +1,5 @@
 import { ExtendedRecordMap } from 'notion-types';
-import { notion, notionHQ } from '../_lib/notion';
+import { notion, notionHQ } from '../_lib/notion.js';
 import type { IPostMetadata } from '../../dto/notion';
 
 export default async function handler(req, res) {
