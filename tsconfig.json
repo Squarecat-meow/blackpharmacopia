@@ -5,9 +5,8 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "types": ["jset", "profileTypes", "userTypes"],
-    "moduleResolution": "node"
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "allowImportingTsExtensions": false
   }
 }
