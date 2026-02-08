@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/api/gallery/:id",
+      "destination": "/api/gallery/[id].js"
+    },
+    {
+      "source": "/api/board/:id",
+      "destination": "/api/board/[id].js"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/$1"
     },
