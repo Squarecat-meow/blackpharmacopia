@@ -32,7 +32,7 @@ function Post() {
   return (
     <>
       <div className="flex flex-col items-center p-4 bg-base-100 grow rounded-xl">
-        <h1 className="font-noto-serif text-4xl font-bold">
+        <h1 className="font-noto-serif text-2xl lg:text-4xl font-bold">
           {properties.제목.title[0].plain_text}
         </h1>
         <div className="flex items-center gap-2 mb-2">
